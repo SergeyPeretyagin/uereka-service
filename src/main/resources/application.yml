@@ -1,0 +1,29 @@
+server:
+  port: 8762           # Порт по умолчанию
+spring:
+  application:
+    name: eserver      # id приложения, которое нужно указывать в микросервисах
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8762/eureka  #url eureka сервера куда будут регистрироваться микросервисы
+    register-with-eureka: false    #Не нужно регистрироваться с другой eureka, т.к. это не клиент убираем некоторые настройки
+    fetch-registry: false          # чтобы eureka не пытался найти реестр(сервер) с микросервисами
+
+  server:
+    enable-self-preservation: false   #Не нужно регистрироваться с другой eureka, т.к. это не клиент убираем некоторые настройки
+
+logging:
+  file:
+   name: ${sys:}/logs/uerekaLogFile.log
+  pattern:
+   console: "%d %-5level %logger : %msg%n"
+   file: "%d %-5level [%thread] %logger : %msg%n"
+  level:
+   org.springframework: INFO
+   com.eurekaserver: INFO
+   com.netflix.eureka: OFF
+   com.netflix.discovery: OFF
+
+
