@@ -7,12 +7,16 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8762/eureka  #url eureka сервера куда будут регистрироваться микросервисы
+#      defaultZone: http://localhost:8762/eureka  #url eureka сервера куда будут регистрироваться микросервисы
+      defaultZone: http://192.168.0.5:8762/eureka  #url eureka сервера куда будут регистрироваться микросервисы
     register-with-eureka: false    #Не нужно регистрироваться с другой eureka, т.к. это не клиент убираем некоторые настройки
     fetch-registry: false          # чтобы eureka не пытался найти реестр(сервер) с микросервисами
-
   server:
     enable-self-preservation: false   #Не нужно регистрироваться с другой eureka, т.к. это не клиент убираем некоторые настройки
+  instance:
+    prefer-ip-address: true
+    hostname: localhost
+
 
 logging:
   file:
@@ -23,7 +27,7 @@ logging:
   level:
    org.springframework: INFO
    com.eurekaserver: INFO
-   com.netflix.eureka: OFF
-   com.netflix.discovery: OFF
+   com.netflix.eureka: INFO
+   com.netflix.discovery: INFO
 
 
